@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="decription" content="">
+    <title>{% block title %}ベナキー{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'post/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'post/css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'post/css/users.css' %}">
+    <link rel="stylesheet" href="{% static 'post/css/explain.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti&family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@200;400;600;900&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  </head>
+
+  <header id="header">
+    <h1 class="headerImg">VENAQUI</h1>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="globalMenuSp">
+      <ul>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'post:index' %}">マイページ</a></li>
+        <li><a href="{% url 'accounts:logout' %}">ログアウト</a></li>
+        <li><a href="{% url 'password_reset' %}">パスワードのリセット</a></li>
+        <li><a href="{% url 'post:users' %}">総会員数</a></li>
+        <li><a href="{% url 'post:explain' %}">VENAQUIとは</a></li>
+        {% else %}
+        <li><a href="{% url 'accounts:signup' %}">新規登録</a></li>
+        <li><a href="{% url 'accounts:login' %}">ログイン</a></li>
+        <li><a href="{% url 'post:explain' %}">VENAQUIとは</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+
+  <div class="humburger_backimage hidden"></div>
+  
+  <body>
+      {% block contents %}{% endblock %}
+      {% block extrajs %}
+<script>
+  /** jQueryの処理 */
+  var h = 'Hello World'
+  console.log(h)
+  
+  var num = $('#users_count').text()
+  var result = Number(num)
+  
+  function count() {
+    setTimeout(count, 1000);
+      $.ajax({
+        url: "{% url 'post:users' %}",
+        method: "GET",
+        data: {'count': $('#users_count').text()},
+        success:function(response) {
+          const c = response.count;
+          $('#users_count').text(c)
+        }
+      })
+  };
+
+  // ↓これで実行する
+  // count();
+
+      function copyToClipboard() {
+        // コピー対象をJavaScript上で変数として定義する
+        var copyTarget = document.getElementById("copyTarget");
+
+        // コピー対象のテキストを選択する
+        copyTarget.select();
+
+        // 選択しているテキストをクリップボードにコピーする
+        document.execCommand("Copy");
+
+        // コピーをお知らせする
+        alert("コピーできました！ : " + copyTarget.value);
+    }
+
+    $(function() {
+  var header = $('#header');
+  var headerImg = $('.headerImg');
+  $('.hamburger').click(function() {
+      $(this).toggleClass('active');
+      if ($(this).hasClass('active')) {
+          $('.globalMenuSp').addClass('active');
+          $('.humburger_backimage').removeClass('hidden');
+      } else {
+          $('.globalMenuSp').removeClass('active');
+          $('.humburger_backimage').addClass('hidden');
+      }
+  });
+  });
+</script>
+{% endblock %}
+  </body>
+
+  <footer>
+    <p>&copy; 2021 All rights reserved by RAMBIIS.</p>
+  </footer>
+</html>

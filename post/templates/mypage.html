@@ -1,0 +1,70 @@
+
+  <div class="mypage">
+    <div class="profile">
+      <div class="top">
+        <div class="image">
+          <img src="{{ my_data.image.url }}">
+        </div>
+        <div class="text">
+          <p id="username">{{my_data.username}}</p>
+          <div class="count">
+            <div class="post">
+              <p class="post_title">ポスト</p>
+              <p >{{ my_posts }}</p>
+            </div>
+            <div class="good">
+              <p class="good_title">それな！</p>
+              <p>{{ my_goods }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- コピー対象要素とコピーボタン -->
+      <div class="link">
+        <p>SNSにリンクを貼って匿名で印象を聞こう！</p>
+        <input id="copyTarget" type="text" value="https://venaqui.herokuapp.com/{{my_data.id}}" readonly>
+        <button onclick="copyToClipboard()">Copy text</button>
+      </div>
+    </div>
+
+    <!-- Messages表示 -->
+    {% if messages %}
+      {% for message in messages %}
+      <p>{{message}}</p>
+      {% endfor %}
+      {% endif %}
+      
+    <!-- Post一覧 -->
+    <div class="posts">
+      {% for post in posts %}
+      <div class="post">
+        <p id="t">{{post.content}}</p>
+        <div class="under">
+          <a href="{% url 'post:delete' post.id %}">削除する</a>
+          <p><span id="good_count">{{post.good_count}}</span>それな！</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="paginator">
+    <ul>
+      {% if posts.has_previous %}
+      <li><a class="hover" href="{% url 'post:index' %}"><<</a></li>
+      <li><a class="hover" href="{% url 'post:index' %}{{posts.previous_page_number}}">前のページ</a></li>
+      {% else %}
+      <li><a class="none"><<</a></li>
+      <li><a class="none">前のページ</a></li>
+      {% endif %}
+      <li><a>{{posts.number}}/{{posts.paginator.num_pages}}</a></li>
+      {% if posts.has_next %}
+      <li><a class="hover" href="{% url 'post:index' %}{{posts.next_page_number}}">次のページ</a></li>
+      <li><a class="hover" href="{% url 'post:index' %}{{posts.paginator.num_pages}}">>></a></li>
+      {% else %}
+      <li><a class="none">次のページ</a></li>
+      <li><a class="none">>></a></li>
+      {% endif %}
+    </ul>
+  </div>

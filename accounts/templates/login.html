@@ -1,0 +1,91 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>ログイン</title>
+  <!-- Custom styles for this template -->
+  <link href="{% static 'accounts/css/login.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'post/css/header.css' %}">
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+
+<header id="header">
+  <h1 class="headerImg">VENAQUI</h1>
+  <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <nav class="globalMenuSp">
+    <ul>
+      {% if user.is_authenticated %}
+      <li><a href="{% url 'post:index' %}">マイページ</a></li>
+      <li><a href="{% url 'accounts:logout' %}">ログアウト</a></li>
+      <li><a href="{% url 'password_reset' %}">パスワードのリセット</a></li>
+      <li><a href="{% url 'post:users' %}">総会員数</a></li>
+      <li><a href="{% url 'post:explain' %}">VENAQUIとは</a></li>
+      {% else %}
+      <li><a href="{% url 'accounts:signup' %}">新規登録</a></li>
+      <li><a href="{% url 'accounts:login' %}">ログイン</a></li>
+      <li><a href="{% url 'post:explain' %}">VENAQUIとは</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+</header>
+
+<div class="humburger_backimage hidden"></div>
+
+<body class="text-center">
+  <main>
+    <div class="form-login">
+    {% if form.errors %}
+    <p style="color: red">ユーザー名とパスワードが一致しません</p>
+    {% endif%}
+
+    <h2 id="venaqui">VENAQUI</h2>
+    <h3>匿名で友達から君の印象を聞こう！</h3>
+    <!--ログインフォームを配置-->
+    <div class="form">
+      <form class="signup" method="post">
+        {% csrf_token %}
+        <div class="mail">
+          <label id="username" for="Username" class="visually-hidden">メールアドレス</label><br>
+          <input type="text" name="username" id="id_username" max_length="200" autocapitalize="none" autocomplete="username"
+            class="form-control" placeholder="example@gmail.com" required autofocus>
+        </div>
+        <div class="password">
+          <label id="pin" for="Password" class="visually-hidden">パスワード</label><br>
+          <input type="password" name="password" id="id_password" autocomplete="current-password" class="form-control"
+            placeholder="password" required>
+        </div>
+          <p class="forget"><a href="{% url 'password_reset' %}">パスワードを忘れましたか？</a></p>
+          <input id="login" class="w-100 btn btn-lg btn-primary" type="submit" value="ログイン">
+      </form>
+      <p id="to_signup">アカウントをお持ちではないですか？<a href="{% url 'accounts:signup' %}">登録する</a></p>
+    </div>
+  </div>
+  </main>
+
+<script>
+    $(function() {
+  var header = $('#header');
+  var headerImg = $('.headerImg');
+  $('.hamburger').click(function() {
+      $(this).toggleClass('active');
+      if ($(this).hasClass('active')) {
+          $('.globalMenuSp').addClass('active');
+          $('.humburger_backimage').removeClass('hidden');
+      } else {
+          $('.globalMenuSp').removeClass('active');
+          $('.humburger_backimage').addClass('hidden');
+      }
+  });
+  });
+</script>
+</body>
+
+</html>

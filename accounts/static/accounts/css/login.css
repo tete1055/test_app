@@ -1,0 +1,312 @@
+@charset "utf-8";
+
+html {
+  margin: 0;
+  height: -webkit-fill-available;
+}
+
+body {
+  margin: 0;
+  background-color: #fff;
+  max-width: 100%;
+  min-height: 100vh;
+  text-align: center;
+    /* mobile viewport bug fix */
+    min-height: -webkit-fill-available;
+}
+
+a {
+  color: #CD88FF;
+}
+
+a:hover {
+  color: #8a59ad;
+}
+
+.form-login {
+  margin: 40px 0 0 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  z-index: 0;
+  background-color: #f8edff;
+  padding: 50px 120px;
+  border: solid 1px rgb(188, 188, 188);
+  border-radius: 10px;
+}
+
+#venaqui {
+  color: #CD88FF;
+  font-size: 40px;
+  margin: 0;
+  padding-bottom: 20px;
+}
+
+h3 {
+  color: #000;
+  font-size: 1.2vw;
+  margin: 0;
+}
+
+.mail {
+  text-align: left;
+  width: 100%;
+  margin: 30px auto 0 auto;
+}
+
+.mail #username {
+  font-size: 13px;
+  color: rgb(76, 76, 76);
+}
+
+.mail #id_username {
+  width: 100%;
+  line-height: 1.8em;
+}
+
+.password {
+  text-align: left;
+  width: 100%;
+  margin: 15px auto 0 auto;
+}
+
+.password #pin {
+  font-size: 13px;
+  color: rgb(76, 76, 76);
+}
+
+.password #id_password {
+  width: 100%;
+  line-height: 1.8em;
+}
+
+.forget {
+  text-align: right;
+  margin: 0;
+}
+
+.forget a {
+  font-size: 10px;
+}
+
+#login {
+  margin: 0;
+  margin-top: 20px;
+  width: 100%;
+  background-color: #CD88FF;
+  color: #fff;
+  border-radius: 5px;
+  border: solid 1px rgb(76, 76, 76);
+  line-height: 2.5em;
+  font-size: 18px;
+}
+
+#login:hover {
+  background-color: #b174dd;
+  transition: .5s;
+}
+
+#to_signup {
+  margin-top: 30px;
+  font-size: 1vw;
+}
+
+@media screen and (max-width: 1300px) and (min-width: 1024px) {
+  .form-login {
+    width: 30%;
+    margin: 40px 0 0 0;
+    padding: 30px 130px;
+    border: solid 1px rgb(188, 188, 188);
+    border-radius: 10px;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 750px) {
+  .form-login {
+    width: 40%;
+    margin: 40px 0 0 0;
+    padding: 20px 120px;
+    border: solid 1px rgb(188, 188, 188);
+    border-radius: 10px;
+  }
+
+  h3 {
+    color: #000;
+    font-size: 1.7vw;
+    margin: 0;
+  }
+
+  #login {
+    margin: 0;
+    margin-top: 25px;
+    width: 100%;
+    background-color: #CD88FF;
+    color: #fff;
+    border-radius: 5px;
+    border: solid 1px rgb(76, 76, 76);
+    line-height: 2.5em;
+    font-size: 15px;
+  }
+
+  .forget a {
+    font-size: 1vw;
+  }
+
+  #to_signup {
+    margin-top: 30px;
+    font-size: 1.3vw;
+  }
+}
+
+@media screen and (max-width: 750px) and (min-width: 500px) {
+  #venaqui {
+    color: #CD88FF;
+    font-size: 30px;
+    margin: 0;
+    padding-bottom: 20px;
+  }
+
+  .form-login {
+    width: 40%;
+    margin: 40px 0 0 0;
+    padding: 20px 100px;
+    border: solid 1px rgb(188, 188, 188);
+    border-radius: 10px;
+  }
+
+  h3 {
+    color: #000;
+    font-size: 2vw;
+    margin: 0;
+  }
+
+  .mail {
+    text-align: left;
+    width: 100%;
+    margin: 20px auto 0 auto;
+  }
+  
+  .mail #username {
+    font-size: 12px;
+    color: rgb(76, 76, 76);
+  }
+  
+  .mail #id_username {
+    width: 100%;
+    line-height: 1.8em;
+  }
+  
+  .password {
+    text-align: left;
+    width: 100%;
+    margin: 10px auto 0 auto;
+  }
+  
+  .password #pin {
+    font-size: 12px;
+    color: rgb(76, 76, 76);
+  }
+  
+  .password #id_password {
+    width: 100%;
+    line-height: 1.8em;
+  }
+
+  .forget a {
+    font-size: 1vw;
+  }
+
+  #login {
+    margin: 0;
+    margin-top: 20px;
+    width: 100%;
+    background-color: #CD88FF;
+    color: #fff;
+    border-radius: 5px;
+    border: solid 1px rgb(76, 76, 76);
+    line-height: 2.5em;
+    font-size: 15px;
+  }
+
+  #to_signup {
+    margin-top: 30px;
+    font-size: 1.3vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #venaqui {
+    color: #CD88FF;
+    font-size: 35px;
+    margin: 0;
+    padding-bottom: 15px;
+  }
+
+  .form-login {
+    width: 70%;
+    margin: 40px 0 0 0;
+    padding: 30px 30px;
+    border: solid 1px rgb(188, 188, 188);
+    border-radius: 10px;
+  }
+
+  h3 {
+    color: #000;
+    font-size: 3vw;
+    margin: 0;
+  }
+
+  .mail {
+    text-align: left;
+    width: 100%;
+    margin: 20px auto 0 auto;
+  }
+  
+  .mail #username {
+    font-size: 12px;
+    color: rgb(76, 76, 76);
+  }
+  
+  .mail #id_username {
+    width: 100%;
+    line-height: 1.8em;
+  }
+  
+  .password {
+    text-align: left;
+    width: 100%;
+    margin: 10px auto 0 auto;
+  }
+  
+  .password #pin {
+    font-size: 12px;
+    color: rgb(76, 76, 76);
+  }
+  
+  .password #id_password {
+    width: 100%;
+    line-height: 1.8em;
+  }
+
+  .forget a {
+    font-size: 1.5vw;
+  }
+
+  #login {
+    margin: 0;
+    margin-top: 30px;
+    width: 100%;
+    background-color: #CD88FF;
+    color: #fff;
+    border-radius: 5px;
+    border: solid 1px rgb(76, 76, 76);
+    line-height: 2.5em;
+    font-size: 15px;
+  }
+
+  #to_signup {
+    margin-top: 20px;
+    font-size: 2.5vw;
+  }
+}

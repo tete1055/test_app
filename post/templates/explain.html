@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}VENAQUIとは{% endblock %}
+
+{% block contents %}
+<main>
+  <div class="explain_back">
+    <h2>VENAQUI（ベナキー）って何？</h2>
+    <p>VENAQUIとは、SNSにマイページのリンクを貼り、友達から匿名で自分の印象を投稿してもらい、その投稿に「それな！」で色々な人に共感してもらう事で自分の客観的意見を知ることができるサービスです！</p>
+      <div class="explain_first">
+        <div class="explain_first_images">
+          <img src="../../media/images/explain_instagram.png" />
+          <img src="../../media/images/explain_twitter.png" />
+        </div>
+        <h3>SNSにリンクを貼って自分の印象を匿名で教えて貰おう！</h3>
+      </div>
+      <div class="explain_second">
+        <img src="../../media/images/explain_second.png" />
+        <h3>教えてもらった印象に共感した人に「それな！」して貰おう！</h3>
+      </div>
+      <div class="explain_last">
+        <p>※あくまで他人の意見です。強く聞き入れすぎずに、参考する程度にVENAQUIをお楽しみ下さい。</p>
+      </div>
+      {% if not user.is_authenticated %}
+      <div class="to_login">
+        <a href="{% url 'accounts:signup' %}">アカウント新規登録はこちらから</a>
+      </div>
+      {% endif %}
+  </div>
+</main>
+{% endblock %}

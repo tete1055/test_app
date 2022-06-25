@@ -1,0 +1,114 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>会員登録</title>
+  <!-- Custom styles for this template -->
+  <link href="{% static 'accounts/css/signup.css' %}" rel="stylesheet">
+  <link href="{% static 'post/css/header.css' %}" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+
+<header id="header">
+  <h1 class="headerImg">VENAQUI</h1>
+  <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <nav class="globalMenuSp">
+    <ul>
+      {% if user.is_authenticated %}
+      <li><a href="{% url 'post:index' %}">マイページ</a></li>
+      <li><a href="{% url 'accounts:logout' %}">ログアウト</a></li>
+      <li><a href="{% url 'password_reset' %}">パスワードのリセット</a></li>
+      <li><a href="{% url 'post:users' %}">総会員数</a></li>
+      <li><a href="{% url 'post:explain' %}">VENAQUIとは</a></li>
+      {% else %}
+      <li><a href="{% url 'accounts:signup' %}">新規登録</a></li>
+      <li><a href="{% url 'accounts:login' %}">ログイン</a></li>
+      <li><a href="{% url 'post:explain' %}">VENAQUIとは</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+</header>
+
+<div class="humburger_backimage hidden"></div>
+
+<body>
+  <main>
+    <div class="signup">
+      <h2>VENAQUI</h2>
+      <h3>登録して友達に匿名で印象を聞こう</h3>
+      <div class="form">
+        <form method="post" novalidate enctype="multipart/form-data">
+          {% csrf_token %}
+          <p>
+            <span class="tag">プロフィール画像:</span>
+            <br>{{ form.image }}<br>
+            {% for error in form.image.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+            </p><br>
+          <p>
+            <span class="tag">ユーザー名:</span><br>
+            {{ form.username }}<br>
+            {% for error in form.username.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+            </p><br>
+          <p>
+            <span class="tag">メールアドレス:</span><br>
+            {{ form.email }}<br>
+            {% for error in form.email.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+            </p><br>
+          <p>
+            <span class="tag">パスワード:</span><br>
+            {{ form.password1 }}<br>
+            {% for error in form.password1.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+            </p><br>
+            <p>
+            <span class="tag">パスワード(確認用):</span><br>
+            {{ form.password2 }}<br>
+            {% for error in form.password2.errors %}
+                <span>{{ error }}</span>
+            {% endfor %}
+            </p><br>
+        <input id="make" type="submit" value="登録する">
+        </form>
+      </div>
+      <p class="to_login"><a href="{% url 'accounts:login' %}">
+        ログインはこちら
+      </a></p>
+      <p class="to_top"><a href="{% url 'post:index' %}">
+        トップページに戻る
+      </a></p>
+    </div>
+  </main>
+
+  <script>
+    $(function() {
+  var header = $('#header');
+  var headerImg = $('.headerImg');
+  $('.hamburger').click(function() {
+      $(this).toggleClass('active');
+      if ($(this).hasClass('active')) {
+          $('.globalMenuSp').addClass('active');
+          $('.humburger_backimage').removeClass('hidden');
+      } else {
+          $('.globalMenuSp').removeClass('active');
+          $('.humburger_backimage').addClass('hidden');
+      }
+  });
+  });
+</script>
+  </body>
+  </html>

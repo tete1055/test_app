@@ -1,0 +1,378 @@
+@charset "utf-8";
+
+html {
+  margin: 0;
+  height: -webkit-fill-available;
+}
+
+body {
+  margin: 0;
+  background-color: #fff;
+  max-width: 100%;
+  min-height: 100vh;
+  text-align: center;
+    /* mobile viewport bug fix */
+    min-height: -webkit-fill-available;
+}
+
+h2 {
+  color: #CD88FF;
+  font-size: 35px;
+  margin: 0;
+}
+
+h3 {
+  color:rgb(103, 103, 103);
+  font-size: 1.2vw;
+  margin: 15px 0 20px 0;
+}
+
+.signup {
+  width: 40%;
+  margin: 100px 0 100px 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  z-index: 0;
+  background-color: #f8edff;
+  border-radius: 5px;
+  border: solid 1px rgb(188, 188, 188);
+  padding: 30px;
+}
+
+.signup .form {
+  margin: 0;
+  text-align: center;
+  display: block;
+}
+
+.signup .form p {
+  text-align: left;
+  margin: 0 auto 10px auto;
+  display: inline-block;
+}
+
+.signup .form p .tag {
+  font-size: 12px;
+}
+
+.signup .form p input {
+  width: 280px;
+  line-height: 1.8em;
+}
+
+#make {
+  margin: 0;
+  margin-top: 20px;
+  width: 250px;
+  background-color: #CD88FF;
+  color: #fff;
+  border-radius: 5px;
+  border: solid 1px rgb(76, 76, 76);
+  line-height: 1.8em;
+  font-size: 15px;
+}
+
+#make:hover {
+  background-color: #b174dd;
+  transition: .5s;
+}
+
+.to_login {
+  margin: 0;
+  margin-top: 30px;
+  text-align: right;
+  font-size: 12px;
+}
+
+.to_top {
+  margin: 0;
+  text-align: right;
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+@media screen and (max-width: 1300px) and (min-width: 1024px) {
+  h2 {
+    color: #CD88FF;
+    font-size: 30px;
+    margin: 0;
+  }
+  
+  h3 {
+    color:rgb(103, 103, 103);
+    font-size: 1.5vw;
+    margin: 15px 0 20px 0;
+  }
+
+  .signup {
+    width: 50%;
+    background-color: #f8edff;
+    border-radius: 5px;
+    border: solid 1px rgb(188, 188, 188);
+    margin: 100px 0 50px 0;
+    padding: 30px;
+  }
+  
+  .signup .form {
+    margin: 0;
+    text-align: center;
+    display: block;
+  
+  }
+  
+  .signup .form p {
+    text-align: left;
+    margin: 0 auto 15px auto;
+    display: inline-block;
+  }
+  
+  .signup .form p input {
+    width: 250px;
+    line-height: 1.8em;
+  }
+  
+  #make {
+    margin: 0;
+    margin-top: 20px;
+    width: 250px;
+    background-color: #CD88FF;
+    color: #fff;
+    border-radius: 5px;
+    border: solid 1px rgb(76, 76, 76);
+    line-height: 1.8em;
+    font-size: 15px;
+  }
+  
+  #make:hover {
+    background-color: #b174dd;
+    transition: .5s;
+  }
+  
+  .to_login {
+    margin: 0;
+    margin-top: 30px;
+    text-align: right;
+    font-size: 12px;
+  }
+  
+  .to_top {
+    margin: 0;
+    text-align: right;
+    margin-top: 5px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 750px) {
+  
+  h2 {
+    color: #CD88FF;
+    font-size: 30px;
+    margin: 0;
+  }
+
+  h3 {
+    color:rgb(103, 103, 103);
+    font-size: 1.5vw;
+    margin: 15px 0 20px 0;
+  }
+  
+  .signup {
+    width: 50%;
+    background-color: #f8edff;
+    border-radius: 5px;
+    border: solid 1px rgb(188, 188, 188);
+    margin: 100px 0 50px 0;
+    padding: 30px;
+  }
+  
+  .signup .form {
+    margin: 0;
+    text-align: center;
+    display: block;
+  
+  }
+  
+  .signup .form p {
+    text-align: left;
+    margin: 0 auto 15px auto;
+    display: inline-block;
+  }
+  
+  .signup .form p input {
+    width: 250px;
+    line-height: 1.8em;
+  }
+  
+  #make {
+    margin: 0;
+    margin-top: 20px;
+    width: 250px;
+    background-color: #CD88FF;
+    color: #fff;
+    border-radius: 5px;
+    border: solid 1px rgb(76, 76, 76);
+    line-height: 1.8em;
+    font-size: 15px;
+  }
+  
+  #make:hover {
+    background-color: #b174dd;
+    transition: .5s;
+  }
+  
+  .to_login {
+    margin: 0;
+    margin-top: 30px;
+    text-align: right;
+    font-size: 12px;
+  }
+  
+  .to_top {
+    margin: 0;
+    text-align: right;
+    margin-top: 5px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 750px) and (min-width: 500px) {
+  
+  h2 {
+    color: #CD88FF;
+    font-size: 35px;
+    margin: 0;
+  }
+
+  h3 {
+    color:rgb(103, 103, 103);
+    font-size: 2vw;
+    margin: 15px 0 20px 0;
+  }
+  
+  .signup {
+    width: 60%;
+    background-color: #f8edff;
+    border-radius: 5px;
+    border: solid 1px rgb(188, 188, 188);
+    margin: 100px 0 50px 0;
+    padding: 30px;
+  }
+  
+  .signup .form {
+    margin: 0;
+    text-align: center;
+    display: block;
+  
+  }
+  
+  .signup .form p {
+    text-align: left;
+    margin: 0 auto 15px auto;
+    display: inline-block;
+  }
+  
+  .signup .form p input {
+    width: 280px;
+    line-height: 1.8em;
+  }
+  
+  #make {
+    margin: 0;
+    margin-top: 20px;
+    width: 250px;
+    background-color: #CD88FF;
+    color: #fff;
+    border-radius: 5px;
+    border: solid 1px rgb(76, 76, 76);
+    line-height: 1.8em;
+    font-size: 15px;
+  }
+  
+  #make:hover {
+    background-color: #b174dd;
+    transition: .5s;
+  }
+  
+  .to_login {
+    margin: 0;
+    margin-top: 30px;
+    text-align: right;
+    font-size: 12px;
+  }
+  
+  .to_top {
+    margin: 0;
+    text-align: right;
+    margin-top: 5px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  h2 {
+    color: #CD88FF;
+    font-size: 35px;
+    margin: 0;
+  }
+
+  h3 {
+    color:rgb(103, 103, 103);
+    font-size: 3vw;
+    margin: 15px 0 20px 0;
+  }
+  
+  .signup {
+    width: 70%;
+    background-color: #f8edff;
+    border-radius: 5px;
+    border: solid 1px rgb(188, 188, 188);
+    margin: 100px 0 50px 0;
+    padding: 30px;
+  }
+  
+  .signup .form {
+    margin: 0;
+    text-align: center;
+    display: block;
+  
+  }
+  
+  .signup .form p {
+    text-align: left;
+    margin: 0 auto 15px auto;
+    display: inline-block;
+  }
+  
+  .signup .form p input {
+    width: 250px;
+    line-height: 1.8em;
+  }
+  
+  #make {
+    margin: 0;
+    margin-top: 20px;
+    width: 250px;
+  }
+  
+  #make:hover {
+    background-color: #b174dd;
+    transition: .5s;
+  }
+  
+  .to_login {
+    margin: 0;
+    margin-top: 30px;
+    text-align: right;
+    font-size: 12px;
+  }
+  
+  .to_top {
+    margin: 0;
+    text-align: right;
+    margin-top: 5px;
+    font-size: 12px;
+  }
+}

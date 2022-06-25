@@ -1,0 +1,205 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="decription" content="">
+    <title>{% block title %}ベナキー{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'post/css/posts.css' %}">
+    <link rel="stylesheet" href="{% static 'post/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'post/css/header.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  </head>
+
+  <header id="header">
+    <h1 class="headerImg">VENAQUI</h1>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <nav class="globalMenuSp">
+      <ul>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'post:index' %}">マイページ</a></li>
+        <li><a href="{% url 'accounts:logout' %}">ログアウト</a></li>
+        <li><a href="{% url 'password_reset' %}">パスワードのリセット</a></li>
+        <li><a href="{% url 'post:users' %}">総会員数</a></li>
+        {% else %}
+        <li><a href="{% url 'accounts:signup' %}">新規登録</a></li>
+        <li><a href="{% url 'accounts:login' %}">ログイン</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+
+  <div class="humburger_backimage hidden"></div>
+  
+  <body>
+{% block contents %}
+<main>
+<div class="to_page">
+  <div class="profile">
+    <div class="top">
+      <div class="image">
+        <img src="{{ to_user.image.url }}">
+      </div>
+      <div class="text">
+        <p id="username">{{ to_user.username }}</p>
+        <div class="count">
+          <div class="post">
+            <p class="post_title">ポスト</p>
+            <p >{{ to_posts }}</p>
+          </div>
+          <div class="good">
+            <p class="good_title">それな！</p>
+            <p>{{ to_goods }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="make">
+        <button class="before_postform_button">匿名で印象を伝える</button>
+        <div class="content_form_div hidden"></div>
+        <div class="content_form_back hidden">
+          <form id="content_form" action="{% url 'post:posts' to_user.id %}" method="post">
+            {% csrf_token %}
+            {{ form.content }}<br>
+            <button id="content_form_button" type="submit">伝える</button>
+          </form>
+        </div>
+    </div>
+  </div>
+
+  <div class="to_posts">
+  <!-- UserのPost一覧 -->
+  {% for post in posts %}
+    <div class="post">
+      <p id="t">{{post.content}}</p>
+      <div class="under">
+        <span class="message_{{post.id}}"></span>
+        <span class="count_{{post.id}}">{{post.good_count}}</span>
+        <a class="good" name="{{post.id}}" type="button">それな！</a>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+</div>
+
+  <div class="paginator">
+    <ul>
+      {% if posts.has_previous %}
+      <li><a class="hover" href="{% url 'post:posts' to_user.id %}"><<</a></li>
+      <li><a class="hover" href="{% url 'post:posts' to_user.id %}/{{posts.previous_page_number}}">前のページ</a></li>
+      {% else %}
+      <li><a class="none"><<</a></li>
+      <li><a class="none">前のページ</a></li>
+      {% endif %}
+      <li><a>{{posts.number}}/{{posts.paginator.num_pages}}</a></li>
+      {% if posts.has_next %}
+      <li><a class="hover" href="{% url 'post:posts' to_user.id %}/{{posts.next_page_number}}">次のページ</a></li>
+      <li><a class="hover" href="{% url 'post:posts' to_user.id %}/{{posts.paginator.num_pages}}">>></a></li>
+      {% else %}
+      <li><a class="none">次のページ</a></li>
+      <li><a class="none">>></a></li>
+      {% endif %}
+    </ul>
+  </div>
+</main>
+
+  {% block extrajs %}
+  <script charset="utf-8">
+    var i = 'Hello World';
+    console.log(i)
+
+    var token = '{{csrf_token}}';
+
+    $('#content_form').on('submit', function(e) {
+      e.preventDefault();
+      var form = $(this);
+      $.ajax({
+          url: "{% url 'post:posts' to_user.id %}",
+          method: 'POST',
+          dataType: 'json',
+          headers: { "X-CSRFToken": token },
+          data: {
+              content: $('#id_content').val(),
+          },
+          success:function(response){
+            const c = response.content;
+            alert(c)
+            $('#id_content').val('');
+            location.reload();
+          },
+      })
+      console.log(content)
+    })
+
+  $('.good').on('click', function(){
+    var post_id = $(this).attr('name')
+    console.log(post_id)
+    $.ajax({
+        url: "{% url 'post:good' %}",
+        method: "GET",
+        dataType: 'json',
+        data: {
+            good_id: post_id,
+        },
+        success: function(response){
+            const response_id = response.good_id;
+            const good_count = response.good_count;
+            $('.count_' + response_id).text(good_count);
+            const success = response.success;
+            const error = response.error;
+            if (response.error) {
+              console.log(error)
+              $('.message_' + response_id).text('既にそれな！しています。');
+            } else {
+              console.log(success)
+              $('.message_' + response_id).text('それな！しました。');
+            }
+            console.log(response)
+        }
+    })
+  })
+
+$(function() {
+  var header = $('#header');
+  var headerImg = $('.headerImg');
+  $('.hamburger').click(function() {
+      $(this).toggleClass('active');
+      if ($(this).hasClass('active')) {
+          $('.globalMenuSp').addClass('active');
+          $('.humburger_backimage').removeClass('hidden');
+      } else {
+          $('.globalMenuSp').removeClass('active');
+          $('.humburger_backimage').addClass('hidden');
+      }
+  });
+  });
+
+  $('.before_postform_button').on('click', function(){
+    var form_div = $('.content_form_div');
+    var form_back = $('.content_form_back');
+    form_div.removeClass('hidden');
+    form_back.removeClass('hidden');
+  });
+
+  $('.content_form_div').on('click', function(){
+    var form_div = $('.content_form_div');
+    var form_back = $('.content_form_back');
+    form_div.addClass('hidden');
+    form_back.addClass('hidden');
+  });
+  </script>
+  {% endblock %}
+
+{% endblock %}
+</body>
+
+<footer>
+  <p>&copy; 2021 All rights reserved by RAMBIIS.</p>
+</footer>
+</html>

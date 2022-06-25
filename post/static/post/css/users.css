@@ -1,0 +1,57 @@
+@charset "utf-8";
+
+.users_text {
+  position: relative;
+  text-align: center;
+  margin: 0;
+  width: 100%;
+  height: 80vh;
+  padding: 0;
+  z-index: 2;
+  top: 0;
+}
+
+.users_text img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .3;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.users_text .users_center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  z-index: 0;
+}
+
+.users_text .users_center #users_title {
+  font-size: 25px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  font-family: 'Kaisei Opti', serif;
+  white-space: nowrap;
+}
+
+.users_text .users_center #users_count {
+  font-size: 70px;
+  font-weight: 600;
+  margin: 0;
+}
+
+@media screen and (max-width: 750px) {
+  .users_text .users_center #users_title {
+    font-size: 20px;
+  }
+  
+  .users_text .users_center #users_count {
+    font-size: 50px;
+  }
+}
