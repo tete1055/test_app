@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'venaqui.wsgi.application'
 from socket import gethostname
 hostname = gethostname()
 
-if "TengaKawamoto-MacBookAir.local" in hostname:
+if "My-MacBookAir.local" in hostname:
     # デバッグ環境
     DEBUG = True 
     DATABASES = {
@@ -169,11 +169,11 @@ LOGIN_REDIRECT_URL = 'post:index'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-DEFAULT_FROM_EMAIL = 'tenga0114@gmail.com'
+DEFAULT_FROM_EMAIL = '*****@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'tenga0114@gmail.com'
-EMAIL_HOST_PASSWORD = 'wnvlyzanqkrohopx'
+EMAIL_HOST_USER = '*****@gmail.com'
+EMAIL_HOST_PASSWORD = '*****'
 EMAIL_USE_TLS = True
 
 # mediaフォルダーの場所(BASE_DIR以下のmedia)を登録
